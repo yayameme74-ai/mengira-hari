@@ -55,21 +55,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Parisienne&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- YouTube Iframe API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-
-    <!-- Firebase App (Compat) & Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-
     <style>
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #FFFDF9;
@@ -92,41 +78,15 @@
             border-radius: 4px;
         }
 
-        /* Soundwave Bar Animation */
-        .bar {
-            width: 3px;
-            height: 12px;
-            background-color: #8B2635;
-            display: inline-block;
-            border-radius: 2px;
-            animation: bounce 1.2s ease-in-out infinite alternate;
-        }
-        .bar:nth-child(2) { animation-delay: 0.2s; }
-        .bar:nth-child(3) { animation-delay: 0.4s; }
-        .bar:nth-child(4) { animation-delay: 0.6s; }
-
-        @keyframes bounce {
-            0% { height: 4px; }
-            100% { height: 16px; }
-        }
-        .paused .bar {
-            animation-play-state: paused;
-            height: 4px;
-        }
-
         .gold-gradient-text {
             background: linear-gradient(135deg, #B68D2C 0%, #E8C872 50%, #8B6508 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .envelope-shadow {
-            box-shadow: 0 20px 40px -15px rgba(66, 8, 16, 0.35);
-        }
-
-        /* ===== Tema Burgundy & Emas dengan Initial E & A ===== */
+        /* ===== Opening Overlay: Tema Burgundy & Emas dengan Initial E & A ===== */
         #openingOverlay {
-            background: radial-gradient(circle at 50% 40%, #68111B 0%, #3E070E 65%, #260307 100%) !important;
+            background: radial-gradient(circle at 50% 40%, #68111B 0%, #3E070E 65%, #260307 100%);
             overflow: hidden;
             isolation: isolate;
         }
@@ -142,10 +102,6 @@
                 radial-gradient(circle at 82% 84%, rgba(212, 175, 55, 0.14), transparent 35%);
             z-index: -2;
             pointer-events: none;
-        }
-
-        #openingOverlay::after {
-            content: none !important;
         }
 
         .opening-frame {
@@ -235,20 +191,15 @@
         }
 
         .opening-date {
-            font-size: clamp(1rem, 3.8vw, 1.35rem) !important;
+            font-size: clamp(1rem, 3.8vw, 1.35rem);
             letter-spacing: 0.14em;
             font-weight: 600;
-            color: #F7E7B4 !important;
+            color: #F7E7B4;
         }
 
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
-        }
-
-        .lily-opening-title {
-            color: #FFF6E0 !important;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
         }
 
         .lily-opening-line {
@@ -261,9 +212,9 @@
         .lily-open-btn {
             margin-top: 22px;
             min-width: 230px;
-            background: linear-gradient(135deg, #8B6508, #D4AF37 55%, #8B6508) !important;
-            color: #2B0508 !important;
-            border: 1px solid rgba(247, 231, 180, 0.85) !important;
+            background: linear-gradient(135deg, #8B6508, #D4AF37 55%, #8B6508);
+            color: #2B0508;
+            border: 1px solid rgba(247, 231, 180, 0.85);
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
         }
 
@@ -273,7 +224,6 @@
             height: 18px;
             border-radius: 75% 25% 75% 25%;
             background: linear-gradient(135deg, rgba(232, 200, 114, 0.72), rgba(168, 36, 54, 0.35));
-            filter: blur(0.15px);
             pointer-events: none;
             z-index: 4;
             animation: lilyPetalFall linear infinite;
@@ -298,21 +248,12 @@
                 padding: 32px 18px;
             }
         }
-
-        @media (prefers-reduced-motion: reduce) {
-            .ea-monogram-box, .lily-petal { animation: none !important; }
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-blush-200 selection:text-rosewood relative overflow-x-hidden">
 
-    <canvas id="petalCanvas" class="fixed inset-0 pointer-events-none z-20 w-full h-full"></canvas>
-
-    <!-- Hidden Audio Player Elements -->
-    <div class="hidden">
-        <div id="ytAudioPlayer"></div>
-        <audio id="backupAudio" loop preload="auto"></audio>
-    </div>
+    <!-- Audio Pilihan -->
+    <audio id="bgMusic" loop preload="auto"></audio>
 
     <!-- Opening Overlay: Tema Burgundy & Emas dengan Initial E & A -->
     <div id="openingOverlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 transition-all duration-700">
@@ -323,7 +264,7 @@
         <span class="lily-petal lp5"></span>
 
         <div class="opening-frame">
-            <div class="ea-monogram-box" aria-label="Initial E dan A">
+            <div class="ea-monogram-box" aria-label="Initial Erna dan Aiman">
                 <div class="ea-initials-row">
                     <span class="ea-letter">E</span>
                     <span class="ea-divider"></span>
@@ -348,23 +289,193 @@
         </div>
     </div>
 
-    <!-- Kandungan Utama (Kosong / Tidak Dijana Data) -->
-    <main id="mainContent" class="flex-grow"></main>
+    <!-- Kandungan Utama Kad Jemputan -->
+    <main id="mainContent" class="flex-grow">
+        <!-- Header / Hero -->
+        <section class="relative py-16 px-4 text-center bg-gradient-to-b from-blush-50 to-cream border-b border-blush-100">
+            <div class="max-w-2xl mx-auto">
+                <p class="text-xs uppercase tracking-[0.28em] text-gold-600 font-semibold mb-3">
+                    Walimatulurus
+                </p>
+                <h1 class="font-script text-6xl sm:text-7xl text-blush-500 mb-2">
+                    Erna &amp; Aiman
+                </h1>
+                <p class="font-serif-cormorant text-xl sm:text-2xl text-dusty-500 mb-6">
+                    Sabtu, 2 Januari 2027
+                </p>
+                <div class="w-28 h-[1px] bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-6"></div>
+                <p class="font-serif-cormorant italic text-lg sm:text-xl text-rosewood/90 leading-relaxed">
+                    “Dengan penuh kesyukuran ke hadrat Ilahi, kami menjemput Tuan/Puan/Encik/Cik serta seisi keluarga ke majlis perkahwinan kami.”
+                </p>
+            </div>
+        </section>
+
+        <!-- Doa -->
+        <section id="doa" class="py-12 px-4 max-w-2xl mx-auto text-center">
+            <div class="bg-white border border-blush-100 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <span class="text-xs uppercase tracking-[0.22em] text-gold-600 font-semibold">Doa</span>
+                <h2 class="font-serif-cormorant text-3xl font-bold text-blush-500 mt-1 mb-4">
+                    Doa Buat Pengantin
+                </h2>
+                <p class="font-serif-cormorant italic text-xl text-dusty-500 leading-relaxed">
+                    “Ya Allah, satukanlah hati kedua mempelai ini dengan kasih sayang, keberkatan, dan ketenangan, serta kurniakanlah kepada mereka zuriat yang soleh dan solehah.”
+                </p>
+            </div>
+        </section>
+
+        <!-- Atur Cara Majlis -->
+        <section id="atur-cara" class="py-10 px-4 max-w-2xl mx-auto">
+            <div class="bg-white border border-blush-100 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <div class="text-center mb-6">
+                    <span class="text-xs uppercase tracking-[0.22em] text-gold-600 font-semibold">Tentatif</span>
+                    <h2 class="font-serif-cormorant text-3xl font-bold text-blush-500 mt-1">
+                        Atur Cara Majlis
+                    </h2>
+                </div>
+                <div class="space-y-3 text-sm sm:text-base">
+                    <div class="flex justify-between items-center py-2.5 border-b border-blush-50">
+                        <span class="font-semibold text-blush-500">11:00 Pagi</span>
+                        <span class="text-rosewood/90">Ketibaan Tetamu &amp; Jamuan Makan</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2.5 border-b border-blush-50">
+                        <span class="font-semibold text-blush-500">12:30 Tengah Hari</span>
+                        <span class="text-rosewood/90">Ketibaan Pengantin</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2.5">
+                        <span class="font-semibold text-blush-500">4:00 Petang</span>
+                        <span class="text-rosewood/90">Majlis Bersurai</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ucapan Tetamu -->
+        <section id="ucapan" class="py-10 px-4 max-w-2xl mx-auto">
+            <div class="bg-white border border-blush-100 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <div class="text-center mb-6">
+                    <span class="text-xs uppercase tracking-[0.22em] text-gold-600 font-semibold">Buku Tamu</span>
+                    <h2 class="font-serif-cormorant text-3xl font-bold text-blush-500 mt-1">
+                        Ucapan &amp; Titipan Doa
+                    </h2>
+                </div>
+
+                <form id="wishForm" class="space-y-4 mb-6">
+                    <div>
+                        <label for="wishName" class="block text-xs font-semibold uppercase tracking-wider text-dusty-500 mb-1">Nama</label>
+                        <input id="wishName" type="text" required placeholder="Masukkan nama anda" class="w-full px-4 py-2.5 rounded-xl border border-blush-200 focus:outline-none focus:border-blush-500 text-sm">
+                    </div>
+                    <div>
+                        <label for="wishMessage" class="block text-xs font-semibold uppercase tracking-wider text-dusty-500 mb-1">Ucapan</label>
+                        <textarea id="wishMessage" rows="3" required placeholder="Tulis ucapan atau doa anda..." class="w-full px-4 py-2.5 rounded-xl border border-blush-200 focus:outline-none focus:border-blush-500 text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-blush-500 hover:bg-blush-600 text-cream font-semibold text-xs uppercase tracking-widest transition cursor-pointer">
+                        Hantar Ucapan
+                    </button>
+                </form>
+
+                <div id="wishList" class="space-y-3"></div>
+            </div>
+        </section>
+
+        <!-- RSVP -->
+        <section id="rsvp" class="py-10 pb-16 px-4 max-w-2xl mx-auto">
+            <div class="bg-white border border-blush-100 rounded-2xl p-6 sm:p-8 shadow-sm">
+                <div class="text-center mb-6">
+                    <span class="text-xs uppercase tracking-[0.22em] text-gold-600 font-semibold">Kehadiran</span>
+                    <h2 class="font-serif-cormorant text-3xl font-bold text-blush-500 mt-1">
+                        Pengesahan RSVP
+                    </h2>
+                </div>
+
+                <form id="rsvpForm" class="space-y-4">
+                    <div>
+                        <label for="rsvpName" class="block text-xs font-semibold uppercase tracking-wider text-dusty-500 mb-1">Nama Tetamu</label>
+                        <input id="rsvpName" type="text" required placeholder="Nama penuh" class="w-full px-4 py-2.5 rounded-xl border border-blush-200 focus:outline-none focus:border-blush-500 text-sm">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="rsvpStatus" class="block text-xs font-semibold uppercase tracking-wider text-dusty-500 mb-1">Kehadiran</label>
+                            <select id="rsvpStatus" class="w-full px-4 py-2.5 rounded-xl border border-blush-200 focus:outline-none focus:border-blush-500 text-sm bg-white">
+                                <option value="Hadir">Hadir</option>
+                                <option value="Tidak Hadir">Tidak Hadir</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="rsvpPax" class="block text-xs font-semibold uppercase tracking-wider text-dusty-500 mb-1">Jumlah Pax</label>
+                            <input id="rsvpPax" type="number" min="1" max="10" value="1" class="w-full px-4 py-2.5 rounded-xl border border-blush-200 focus:outline-none focus:border-blush-500 text-sm">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-white font-semibold text-xs uppercase tracking-widest transition cursor-pointer">
+                        Hantar RSVP
+                    </button>
+                </form>
+
+                <p id="rsvpFeedback" class="mt-4 text-center text-sm font-medium text-blush-500"></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-xs text-dusty-500 border-t border-blush-100 bg-blush-50/50">
+        Walimatulurus Erna &amp; Aiman • E &amp; A
+    </footer>
 
     <script>
         function openInvitation() {
             const overlay = document.getElementById('openingOverlay');
-            const backupAudio = document.getElementById('backupAudio');
+            const bgMusic = document.getElementById('bgMusic');
             if (overlay) {
                 overlay.classList.add('opacity-0', 'pointer-events-none');
                 setTimeout(() => {
                     overlay.style.display = 'none';
                 }, 700);
             }
-            if (backupAudio && backupAudio.src) {
-                backupAudio.play().catch(() => {});
+            if (bgMusic && bgMusic.src) {
+                bgMusic.play().catch(() => {});
             }
         }
+
+        const wishForm = document.getElementById('wishForm');
+        const wishList = document.getElementById('wishList');
+
+        function renderWish(name, message) {
+            const card = document.createElement('div');
+            card.className = 'p-4 rounded-xl bg-blush-50/70 border border-blush-100';
+
+            const author = document.createElement('p');
+            author.className = 'font-semibold text-sm text-blush-500';
+            author.textContent = name;
+
+            const text = document.createElement('p');
+            text.className = 'text-sm text-rosewood/90 mt-1';
+            text.textContent = message;
+
+            card.appendChild(author);
+            card.appendChild(text);
+            wishList.prepend(card);
+        }
+
+        wishForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nameInput = document.getElementById('wishName');
+            const msgInput = document.getElementById('wishMessage');
+            if (nameInput.value.trim() && msgInput.value.trim()) {
+                renderWish(nameInput.value.trim(), msgInput.value.trim());
+                wishForm.reset();
+            }
+        });
+
+        const rsvpForm = document.getElementById('rsvpForm');
+        const rsvpFeedback = document.getElementById('rsvpFeedback');
+
+        rsvpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('rsvpName').value.trim();
+            const status = document.getElementById('rsvpStatus').value;
+            const pax = document.getElementById('rsvpPax').value;
+            rsvpFeedback.textContent = `Terima kasih ${name}, respon anda (${status}${status === 'Hadir' ? `, ${pax} pax` : ''}) telah direkodkan.`;
+            rsvpForm.reset();
+        });
     </script>
 </body>
 </html>
