@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walimatulurus Erna & Aiman | 2027-01-02</title>
+    <title>Walimatulurus Erna &amp; Aiman</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -52,7 +52,7 @@
     <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Parisienne&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Parisienne&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- YouTube Iframe API -->
@@ -80,9 +80,6 @@
         }
         .font-serif-cormorant {
             font-family: 'Cormorant Garamond', serif;
-        }
-        .font-monogram {
-            font-family: 'Cinzel', 'Cormorant Garamond', serif;
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -127,9 +124,9 @@
             box-shadow: 0 20px 40px -15px rgba(66, 8, 16, 0.35);
         }
 
-        /* ===== Tema Burgundy & Emas Berinspirasikan Gambar ===== */
+        /* ===== Tema Burgundy & Emas dengan Initial E & A ===== */
         #openingOverlay {
-            background: radial-gradient(circle at 50% 40%, #68111B 0%, #3E070E 65%, #260307 100%);
+            background: radial-gradient(circle at 50% 40%, #68111B 0%, #3E070E 65%, #260307 100%) !important;
             overflow: hidden;
             isolation: isolate;
         }
@@ -147,6 +144,10 @@
             pointer-events: none;
         }
 
+        #openingOverlay::after {
+            content: none !important;
+        }
+
         .opening-frame {
             position: relative;
             z-index: 5;
@@ -158,20 +159,19 @@
             justify-content: center;
             text-align: center;
             padding: 44px 24px;
-            border: 1px solid rgba(232, 200, 114, 0.35);
+            border: 1px solid rgba(232, 200, 114, 0.38);
             border-radius: 28px;
             background: rgba(42, 5, 10, 0.45);
             backdrop-filter: blur(2px);
             box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 0 35px rgba(212, 175, 55, 0.08);
         }
 
-        /* Initial E & A di tengah dengan garisan pemisah emas */
         .ea-monogram-box {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             animation: logoFloat 6s ease-in-out infinite;
         }
 
@@ -179,14 +179,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
-            font-family: 'Cinzel', 'Cormorant Garamond', serif;
+            gap: 16px;
+            font-family: 'Cormorant Garamond', 'Playfair Display', serif;
             color: #F3E5AB;
             text-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
         }
 
         .ea-letter {
-            font-size: clamp(3.2rem, 11vw, 4.6rem);
+            font-size: clamp(3.4rem, 12vw, 4.8rem);
             font-weight: 600;
             line-height: 1;
             letter-spacing: 0.06em;
@@ -194,7 +194,7 @@
 
         .ea-divider {
             width: 1.5px;
-            height: clamp(46px, 12vw, 66px);
+            height: clamp(48px, 12vw, 68px);
             background: linear-gradient(180deg, transparent, #E8C872 25%, #E8C872 75%, transparent);
         }
 
@@ -238,7 +238,7 @@
             font-size: clamp(1rem, 3.8vw, 1.35rem) !important;
             letter-spacing: 0.14em;
             font-weight: 600;
-            color: #F7E7B4;
+            color: #F7E7B4 !important;
         }
 
         @keyframes logoFloat {
@@ -247,7 +247,7 @@
         }
 
         .lily-opening-title {
-            color: #FFF6E0;
+            color: #FFF6E0 !important;
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
         }
 
@@ -261,9 +261,9 @@
         .lily-open-btn {
             margin-top: 22px;
             min-width: 230px;
-            background: linear-gradient(135deg, #8B6508, #D4AF37 55%, #8B6508);
+            background: linear-gradient(135deg, #8B6508, #D4AF37 55%, #8B6508) !important;
             color: #2B0508 !important;
-            border: 1px solid rgba(247, 231, 180, 0.85);
+            border: 1px solid rgba(247, 231, 180, 0.85) !important;
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
         }
 
@@ -311,9 +311,7 @@
     <!-- Hidden Audio Player Elements -->
     <div class="hidden">
         <div id="ytAudioPlayer"></div>
-        <audio id="backupAudio" loop preload="auto">
-            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-112191.mp3" type="audio/mpeg">
-        </audio>
+        <audio id="backupAudio" loop preload="auto"></audio>
     </div>
 
     <!-- Opening Overlay: Tema Burgundy & Emas dengan Initial E & A -->
@@ -325,8 +323,7 @@
         <span class="lily-petal lp5"></span>
 
         <div class="opening-frame">
-            <!-- Initial E | A -->
-            <div class="ea-monogram-box" aria-label="Initial Erna dan Aiman">
+            <div class="ea-monogram-box" aria-label="Initial E dan A">
                 <div class="ea-initials-row">
                     <span class="ea-letter">E</span>
                     <span class="ea-divider"></span>
@@ -345,43 +342,28 @@
 
             <p class="opening-date font-serif-cormorant mt-2">02 • 01 • 2027</p>
 
-            <button id="openInvitationBtn" type="button" class="lily-open-btn px-7 py-3 rounded-full font-semibold tracking-wider text-xs uppercase transition-all duration-300 hover:scale-105 cursor-pointer">
+            <button id="openInvitationBtn" onclick="openInvitation()" type="button" class="lily-open-btn px-7 py-3 rounded-full font-semibold tracking-wider text-xs uppercase transition-all duration-300 hover:scale-105 cursor-pointer">
                 Buka Kad Jemputan
             </button>
         </div>
     </div>
 
-    <!-- Kandungan Utama Selepas Kad Dibuka -->
-    <main id="mainContent" class="flex-grow">
-        <section class="max-w-3xl mx-auto px-6 py-16 text-center">
-            <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-blush-50 border border-blush-200 text-blush-500 text-xs font-semibold tracking-widest uppercase mb-6">
-                <span>E &amp; A</span>
-                <span>•</span>
-                <span>2 Januari 2027</span>
-            </div>
-
-            <h1 class="font-script text-5xl sm:text-6xl text-blush-500 mb-3">Erna &amp; Aiman</h1>
-            <p class="font-serif-cormorant italic text-xl sm:text-2xl text-dusty-500 max-w-xl mx-auto">
-                “Dengan penuh kesyukuran ke hadrat Ilahi, kami menjemput anda ke majlis perkahwinan kami.”
-            </p>
-        </section>
-    </main>
+    <!-- Kandungan Utama (Kosong / Tidak Dijana Data) -->
+    <main id="mainContent" class="flex-grow"></main>
 
     <script>
-        const openBtn = document.getElementById('openInvitationBtn');
-        const overlay = document.getElementById('openingOverlay');
-        const backupAudio = document.getElementById('backupAudio');
-
-        if (openBtn && overlay) {
-            openBtn.addEventListener('click', () => {
+        function openInvitation() {
+            const overlay = document.getElementById('openingOverlay');
+            const backupAudio = document.getElementById('backupAudio');
+            if (overlay) {
                 overlay.classList.add('opacity-0', 'pointer-events-none');
                 setTimeout(() => {
                     overlay.style.display = 'none';
                 }, 700);
-                if (backupAudio) {
-                    backupAudio.play().catch(() => {});
-                }
-            });
+            }
+            if (backupAudio && backupAudio.src) {
+                backupAudio.play().catch(() => {});
+            }
         }
     </script>
 </body>
